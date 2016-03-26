@@ -34,12 +34,20 @@ class Photo < ActiveRecord::Base
   def winner!
     transaction do
       win!
-      part = round.battle.participations.where(user_id: user_id).first
-      part.update_winners_counter!
+      update_participation_counter_cache!
     end
   end
 
+  def find_image_colors
+    # TODO определение победителя
+  end
+
   private
+
+    def update_participation_counter_cache!
+      part = round.battle.participations.where(user_id: user_id).first
+      part.update_winners_counter!
+    end
 
     def set_defaults
       self.status ||= :in_progress

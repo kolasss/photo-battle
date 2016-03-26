@@ -8,7 +8,9 @@ json.status battle.status
 
 json.users battle.users do |user|
   json.merge! user.attributes
-  json.status battle.participations.where(user_id: user.id).first.status
+  user_part = battle.participations.where(user_id: user.id).first
+  json.status user_part.status
+  json.winners_count user_part.winners_count
 end
 
 json.rounds battle.rounds do |round|

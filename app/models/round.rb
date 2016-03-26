@@ -42,6 +42,7 @@ class Round < ActiveRecord::Base
         loser_photo.each(&:lose!)
         winner_photo.winner!
 
+        finished!
         battle.round_ended!
       end
     end
