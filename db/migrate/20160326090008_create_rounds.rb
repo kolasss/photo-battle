@@ -2,6 +2,7 @@ class CreateRounds < ActiveRecord::Migration
   def change
     create_table :rounds do |t|
       t.integer :number, null: false
+      t.integer :status, null: false
 
       t.integer :battle_id, null: false
       t.integer :target_id, null: false

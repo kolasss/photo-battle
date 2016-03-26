@@ -4,6 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  number     :integer          not null
+#  status     :integer          not null
 #  battle_id  :integer          not null
 #  target_id  :integer          not null
 #  created_at :datetime         not null

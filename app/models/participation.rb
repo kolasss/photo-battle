@@ -22,6 +22,11 @@ class Participation < ActiveRecord::Base
     lose: 2
   }
 
+  validates :user,
+    presence: true,
+    uniqueness: {scope: :battle_id}
+  validates :battle, presence: true
+
   private
 
     def set_defaults

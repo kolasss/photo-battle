@@ -25,6 +25,12 @@ class Photo < ActiveRecord::Base
 
   mount_uploader :file, PhotoUploader
 
+  validates :user,
+    presence: true,
+    uniqueness: {scope: :round_id}
+  validates :round, presence: true
+  validates :file, presence: true
+
   private
 
     def set_defaults

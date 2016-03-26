@@ -5,3 +5,15 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Target.create
+  desc: "Сфотайте зеленое",
+  criterion: {
+    "color": "green"
+  }
+
+Target.create
+  desc: "Сфотайте красное",
+  criterion: {
+    "color": "red"
+  }

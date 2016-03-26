@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20160326090328) do
 
   create_table "rounds", force: :cascade do |t|
     t.integer  "number",     null: false
+    t.integer  "status",     null: false
     t.integer  "battle_id",  null: false
     t.integer  "target_id",  null: false
     t.datetime "created_at", null: false
