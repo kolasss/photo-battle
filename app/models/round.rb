@@ -37,10 +37,10 @@ class Round < ActiveRecord::Base
     if photos.length > 1
       transaction do
         offset = rand(photos.count)
-        winner = photos.offset(offset).first
-        winner.win!
-        loser = photos.where.not id: winner.id
-        loser.lose!
+        winner_photo = photos.offset(offset).first
+        loser_photo = photos.where.not id: winner_photo.id
+        loser_photo.each(&:lose!)
+        winner_photo.winner!
 
         battle.round_ended!
       end

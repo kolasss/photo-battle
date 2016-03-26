@@ -31,6 +31,14 @@ class Photo < ActiveRecord::Base
   validates :round, presence: true
   validates :file, presence: true
 
+  def winner!
+    transaction do
+      win!
+      part = round.battle.participations.where(user_id: user_id).first
+      part.update_winners_counter!
+    end
+  end
+
   private
 
     def set_defaults

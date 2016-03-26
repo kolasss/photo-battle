@@ -13,6 +13,7 @@ class Battle < ActiveRecord::Base
   has_many :users, through: :participations
   has_many :rounds
   has_many :targets, through: :rounds
+  has_many :photos, through: :rounds
 
   before_validation :set_defaults, on: :create
 
@@ -77,7 +78,11 @@ class Battle < ActiveRecord::Base
 
     def set_winner!
       transaction do
+        winner_part = participations.order(winners_count: :desc).first
+        winner_part.win!
 
+        losers = participations.where.not(id: winner_part.id)
+        losers.each(&:lose!)
         finished!
       end
     end

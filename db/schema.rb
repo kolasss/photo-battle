@@ -25,11 +25,12 @@ ActiveRecord::Schema.define(version: 20160326090328) do
   add_index "battles", ["status"], name: "index_battles_on_status", using: :btree
 
   create_table "participations", force: :cascade do |t|
-    t.integer  "status",     null: false
-    t.integer  "user_id",    null: false
-    t.integer  "battle_id",  null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "status",                    null: false
+    t.integer  "winners_count", default: 0, null: false
+    t.integer  "user_id",                   null: false
+    t.integer  "battle_id",                 null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   add_index "participations", ["battle_id"], name: "index_participations_on_battle_id", using: :btree
