@@ -84,7 +84,7 @@ class ImageAnalyzer
 
     def get_color_histogram
       image = Magick::ImageList.new(@file_path)
-      q = image.quantize(16, Magick::RGBColorspace)
+      q = image.quantize(32, Magick::RGBColorspace)
       # q.write("q-image-#{@file_path[-10..-1]}.jpg")
       palette = q.color_histogram
       total_depth = image.columns * image.rows
