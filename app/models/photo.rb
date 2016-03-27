@@ -5,6 +5,7 @@
 #  id         :integer          not null, primary key
 #  file       :string
 #  status     :integer          not null
+#  rating     :float            default("0.0"), not null
 #  user_id    :integer          not null
 #  round_id   :integer          not null
 #  created_at :datetime         not null
@@ -38,8 +39,11 @@ class Photo < ActiveRecord::Base
     end
   end
 
-  def find_image_colors
+  def find_color_share color
     # TODO определение победителя
+    ia = ImageAnalyzer.new self.file.path
+    share = ia.share_for_color color
+    update_attribute :rating, share
   end
 
   private

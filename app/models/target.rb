@@ -10,7 +10,7 @@
 #
 
 class Target < ActiveRecord::Base
-  has_many :rounds
+  has_many :rounds, dependent: :restrict_with_error
 
   validates :desc, presence: true
   validates :criterion, presence: true

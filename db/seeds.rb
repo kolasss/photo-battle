@@ -19,3 +19,19 @@ Target.create(
     "color": "red"
   }
 )
+
+Target.create(
+  desc: "Сфотайте синее",
+  criterion: {
+    "color": "blue"
+  }
+)
+
+
+User.create(
+  name: 'kolas'
+)
+
+User.create(
+  name: 'michilly'
+)

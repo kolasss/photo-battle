@@ -9,8 +9,8 @@ gem 'jbuilder'
 
 # File upload
 gem 'carrierwave'
-gem 'mini_magick'
-
+# gem 'mini_magick'
+gem 'rmagick'
 # gem 'pundit' # authorization
 # gem 'jwt' # JSON Web Token
 

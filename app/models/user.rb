@@ -9,7 +9,7 @@
 #
 
 class User < ActiveRecord::Base
-  has_many :participations
+  has_many :participations, dependent: :restrict_with_error
   has_many :photos
   has_many :battles, through: :participations
 

@@ -9,9 +9,9 @@
 #
 
 class Battle < ActiveRecord::Base
-  has_many :participations
+  has_many :participations, dependent: :destroy
   has_many :users, through: :participations
-  has_many :rounds
+  has_many :rounds, dependent: :destroy
   has_many :targets, through: :rounds
   has_many :photos, through: :rounds
 
@@ -37,7 +37,9 @@ class Battle < ActiveRecord::Base
   end
 
   def create_new_round!
-    target = Target.first
+    # TODO сделать чтобы таргеты не повторялись
+    offset = rand(Target.count)
+    target = Target.offset(offset).first
     rounds.create! target: target
   end
 

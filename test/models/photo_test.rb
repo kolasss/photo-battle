@@ -5,6 +5,7 @@
 #  id         :integer          not null, primary key
 #  file       :string
 #  status     :integer          not null
+#  rating     :float            default("0.0"), not null
 #  user_id    :integer          not null
 #  round_id   :integer          not null
 #  created_at :datetime         not null

@@ -38,11 +38,12 @@ ActiveRecord::Schema.define(version: 20160326090328) do
 
   create_table "photos", force: :cascade do |t|
     t.string   "file"
-    t.integer  "status",     null: false
-    t.integer  "user_id",    null: false
-    t.integer  "round_id",   null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "status",                   null: false
+    t.float    "rating",     default: 0.0, null: false
+    t.integer  "user_id",                  null: false
+    t.integer  "round_id",                 null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   add_index "photos", ["round_id"], name: "index_photos_on_round_id", using: :btree

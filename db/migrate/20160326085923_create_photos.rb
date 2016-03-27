@@ -3,6 +3,7 @@ class CreatePhotos < ActiveRecord::Migration
     create_table :photos do |t|
       t.string :file
       t.integer :status, null: false
+      t.float :rating, null: false, default: 0.0
 
       t.integer :user_id, null: false
       t.integer :round_id, null: false

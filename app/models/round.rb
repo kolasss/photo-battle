@@ -14,7 +14,7 @@
 class Round < ActiveRecord::Base
   belongs_to :battle
   belongs_to :target
-  has_many :photos
+  has_many :photos, dependent: :destroy
 
   before_validation :set_number, on: :create
   before_validation :set_defaults, on: :create
@@ -36,8 +36,17 @@ class Round < ActiveRecord::Base
     # TODO сделать норм, пока костыли
     if photos.length > 1
       transaction do
-        offset = rand(photos.count)
-        winner_photo = photos.offset(offset).first
+        color = target.criterion["color"]
+
+        results = []
+
+        # определяем рейтинг фоток
+        photos.each do |photo|
+          photo.find_color_share(color)
+        end
+
+        # находим победителя по рейтингу
+        winner_photo = photos.order(rating: :desc).first
         loser_photo = photos.where.not id: winner_photo.id
         loser_photo.each(&:lose!)
         winner_photo.winner!
